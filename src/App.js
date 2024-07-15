@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "./App.css";
-import Post1 from "./Components/Post1/Post1";
 
 function App() {
   const [post, setPost] = useState({});
   const [number, setNumber] = useState(1);
   const [inputValue, setInputValue] = useState("");
-  const [post1, setPost1] = useState([]);
 
   useEffect(() => {
     axios
@@ -21,16 +19,9 @@ function App() {
   };
 
   const handleButtonClick = (e) => {
-    e.preventDefault(); // Evita que el formulario se envíe
-    setNumber(inputValue); // Actualiza el estado `number` con el valor del input
+    e.preventDefault();
+    setNumber(inputValue);
   };
-
-  useEffect(() => {
-    axios
-      .get("https://jsonplaceholder.typicode.com/posts")
-      .then((res) => setPost1(res.data))
-      .catch((error) => console.error(error));
-  }, []);
 
   return (
     <div className="App">
@@ -44,7 +35,6 @@ function App() {
           <button onClick={handleButtonClick}>Cambiar numero</button>
         </form>
       </div>
-      <div>{/* <Post1 post1Prop={post1} /> */}</div>
     </div>
   );
 }
